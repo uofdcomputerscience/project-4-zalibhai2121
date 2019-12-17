@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,8 @@
 		51B93FA523A42C9600B4FB2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51B93FA323A42C9600B4FB2D /* Main.storyboard */; };
 		51B93FA723A42C9800B4FB2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51B93FA623A42C9800B4FB2D /* Assets.xcassets */; };
 		51B93FAA23A42C9800B4FB2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51B93FA823A42C9800B4FB2D /* LaunchScreen.storyboard */; };
+		51B93FCE23A719E900B4FB2D /* DateCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B93FCD23A719E900B4FB2D /* DateCollectionView.swift */; };
+		51B93FD223A71B6900B4FB2D /* CalendarVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B93FD123A71B6900B4FB2D /* CalendarVars.swift */; };
 		AC0462BE73BD4F2E55BA894A /* Pods_Project_4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD27354DB08E46F8125C330B /* Pods_Project_4.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +46,8 @@
 		51B93FAB23A42C9800B4FB2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51B93FB023A42C9800B4FB2D /* Project-4Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project-4Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		51B93FBB23A42C9800B4FB2D /* Project-4UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Project-4UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		51B93FCD23A719E900B4FB2D /* DateCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCollectionView.swift; sourceTree = "<group>"; };
+		51B93FD123A71B6900B4FB2D /* CalendarVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVars.swift; sourceTree = "<group>"; };
 		754373B140D053777AAE7F83 /* Pods-Project-4.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-4.release.xcconfig"; path = "Target Support Files/Pods-Project-4/Pods-Project-4.release.xcconfig"; sourceTree = "<group>"; };
 		873E4B25C4C7567050A143D9 /* Pods-Project-4.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-4.debug.xcconfig"; path = "Target Support Files/Pods-Project-4/Pods-Project-4.debug.xcconfig"; sourceTree = "<group>"; };
 		CD27354DB08E46F8125C330B /* Pods_Project_4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,6 +113,8 @@
 				51B93F9D23A42C9600B4FB2D /* AppDelegate.swift */,
 				51B93F9F23A42C9600B4FB2D /* SceneDelegate.swift */,
 				51B93FA123A42C9600B4FB2D /* ViewController.swift */,
+				51B93FD123A71B6900B4FB2D /* CalendarVars.swift */,
+				51B93FCD23A719E900B4FB2D /* DateCollectionView.swift */,
 				51B93FA323A42C9600B4FB2D /* Main.storyboard */,
 				51B93FA623A42C9800B4FB2D /* Assets.xcassets */,
 				51B93FA823A42C9800B4FB2D /* LaunchScreen.storyboard */,
@@ -123,7 +129,6 @@
 				873E4B25C4C7567050A143D9 /* Pods-Project-4.debug.xcconfig */,
 				754373B140D053777AAE7F83 /* Pods-Project-4.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -302,8 +307,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				51B93FCE23A719E900B4FB2D /* DateCollectionView.swift in Sources */,
 				51B93FA223A42C9600B4FB2D /* ViewController.swift in Sources */,
 				51B93F9E23A42C9600B4FB2D /* AppDelegate.swift in Sources */,
+				51B93FD223A71B6900B4FB2D /* CalendarVars.swift in Sources */,
 				51B93FA023A42C9600B4FB2D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

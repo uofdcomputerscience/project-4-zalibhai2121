@@ -9,11 +9,35 @@
 import UIKit
 import EventKit
 import EventKitUI
+import FSCalendar
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UICollectionViewDelegate {
+    
+    fileprivate weak var calendar: FSCalendar!
 
-    @IBOutlet weak var Calendar: UIButton!
     var store: EKEventStore?
+    
+    let Months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
+    let DaysofMonths = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]
+    let DaysinMonth = [31,28,31,30,31,30,31,31,30,31,30,31]
+    
+    var currentMonth = String()
+    
+    
+    override func viewDidLoad() {
+        self.viewDidLoad()
+        // In loadView or viewDidLoad
+        let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 320, height: 300))
+//        calendar.dataSource = self
+//        calendar.delegate = self
+        view.addSubview(calendar)
+        self.calendar = calendar
+//        currentMonth = Months[month]
+//
+//        MonthLabel.text = "\(currentMonth), \(year)"
+    }
+    
+    
     
     @IBAction func CalendarEvent(_ sender: Any) {
     store = EKEventStore()
@@ -35,4 +59,21 @@ class ViewController: UIViewController {
     }
 
 }
+//
+//extension ViewController: UICollectionViewDataSource {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return DaysinMonth.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Calendar", for: indexPath) as! DateCollectionView
+//        cell.backgroundColor = UIColor.clear
+//        cell.DateLabel.text = "\(indexPath.row + 1)"
+//        return cell
+//
+//    }
+//}
 
+extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
+    
+}
