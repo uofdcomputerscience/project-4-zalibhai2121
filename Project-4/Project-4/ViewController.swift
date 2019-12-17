@@ -28,10 +28,17 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         self.viewDidLoad()
         // In loadView or viewDidLoad
         let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 320, height: 300))
-//        calendar.dataSource = self
-//        calendar.delegate = self
+        calendar.dataSource = self
+        calendar.delegate = self
+        calendar.register(FSCalendarCell.self, forCellReuseIdentifier: "Cell")
+        calendar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(calendar)
         self.calendar = calendar
+        
+        calendar.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        calendar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        calendar.heightAnchor.constraint(equalToConstant: 250).isActive = false
+        calendar.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = false
 //        currentMonth = Months[month]
 //
 //        MonthLabel.text = "\(currentMonth), \(year)"
@@ -75,5 +82,8 @@ class ViewController: UIViewController, UICollectionViewDelegate {
 //}
 
 extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
-    
+    func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
+        let cell = calendar.dequeueReusableCell(withIdentifier: "Cell", for: date, at: position)
+        return cell
+    }
 }
