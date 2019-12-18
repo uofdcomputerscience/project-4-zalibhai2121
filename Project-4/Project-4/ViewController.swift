@@ -30,10 +30,10 @@ class ViewController: UIViewController {
     private var lastDate: Date?
     private var datesRange: [Date]?
     
-    override func loadView() {
-        let view = UIView(frame: UIScreen.main.bounds)
-        view.backgroundColor = UIColor.groupTableViewBackground
-        self.view = view
+    @IBOutlet weak var TableView: UITableView!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 320, height: 300))
         calendar.dataSource = self
         calendar.delegate = self
@@ -57,6 +57,8 @@ class ViewController: UIViewController {
         calendar.swipeToChooseGesture.isEnabled = true
         calendar.calendarHeaderView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
         calendar.calendarWeekdayView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
+//        TableView.delegate = self
+//        TableView.dataSource = self
         
         let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
         calendar.addGestureRecognizer(scopeGesture)
@@ -67,14 +69,8 @@ class ViewController: UIViewController {
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         self.view.addSubview(label)
         self.eventLabel = label
-    
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        
         self.title = "FSCalendar"
-        // Uncomment this to perform an 'initial-week-scope'
-        // self.calendar.scope = FSCalendarScopeWeek;
         
         let dates = [
             self.gregorian.date(byAdding: .day, value: -1, to: Date()),
@@ -102,8 +98,8 @@ class ViewController: UIViewController {
             let vc = EKEventEditViewController()
             vc.event = event
             vc.eventStore = self.store
-            //vc.delegate = self as? UINavigationControllerDelegate
-           // vc.editViewDelegate = self
+            vc.delegate = self
+            vc.editViewDelegate = self
             vc.cancelEditing()
             self.present(vc, animated: true)
             }
@@ -135,6 +131,12 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
 
         return array
     }
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
+           if self.gregorian.isDateInToday(date) {
+               return [UIColor.red]
+           }
+           return [appearance.eventDefaultColor]
+       }
     
     
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
@@ -219,3 +221,26 @@ extension ViewController: FSCalendarDataSource, FSCalendarDelegate, FSCalendarDe
         self.eventLabel.frame.origin.y = calendar.frame.maxY + 10
     }
 }
+extension ViewController: UINavigationControllerDelegate {
+
+}
+
+extension ViewController: EKEventEditViewDelegate {
+    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+}
+
+//extension ViewController: UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 5
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//       return 0
+//    }
+//
+//
+//}

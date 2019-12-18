@@ -8,9 +8,10 @@
 
 import UIKit
 
-class DateCollectionView: UICollectionViewCell {
+class DateCollectionView: UITableViewCell {
     
 //    @IBOutlet weak var DateLabel: UILabel!
+    @IBOutlet weak var events: UILabel!
     
     
     
