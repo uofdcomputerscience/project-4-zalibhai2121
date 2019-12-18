@@ -11,10 +11,9 @@ import EventKit
 import EventKitUI
 import FSCalendar
 
-class ViewController: UIViewController, UICollectionViewDelegate {
+class ViewController: UIViewController {
     
     fileprivate weak var calendar: FSCalendar!
-
     var store: EKEventStore?
     
     let Months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
@@ -25,8 +24,7 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     
     
     override func viewDidLoad() {
-        self.viewDidLoad()
-        // In loadView or viewDidLoad
+        super.viewDidLoad()
         let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 320, height: 300))
         calendar.dataSource = self
         calendar.delegate = self
@@ -34,16 +32,13 @@ class ViewController: UIViewController, UICollectionViewDelegate {
         calendar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(calendar)
         self.calendar = calendar
-        
+        calendar.allowsMultipleSelection = true
+        calendar.appearance.headerMinimumDissolvedAlpha = 0.0
         calendar.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         calendar.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        calendar.heightAnchor.constraint(equalToConstant: 250).isActive = false
-        calendar.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = false
-//        currentMonth = Months[month]
-//
-//        MonthLabel.text = "\(currentMonth), \(year)"
+        calendar.heightAnchor.constraint(equalToConstant: 275).isActive = true
+        calendar.widthAnchor.constraint(equalToConstant: view.frame.width - 40).isActive = true
     }
-    
     
     
     @IBAction func CalendarEvent(_ sender: Any) {
@@ -66,24 +61,17 @@ class ViewController: UIViewController, UICollectionViewDelegate {
     }
 
 }
-//
-//extension ViewController: UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return DaysinMonth.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Calendar", for: indexPath) as! DateCollectionView
-//        cell.backgroundColor = UIColor.clear
-//        cell.DateLabel.text = "\(indexPath.row + 1)"
-//        return cell
-//
-//    }
-//}
-
-extension ViewController: FSCalendarDelegate, FSCalendarDataSource {
+extension ViewController: FSCalendarDataSource, FSCalendarDelegate {
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
         let cell = calendar.dequeueReusableCell(withIdentifier: "Cell", for: date, at: position)
         return cell
     }
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        return ""
+    }
+    func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
+        
+    }
+   
+    
 }

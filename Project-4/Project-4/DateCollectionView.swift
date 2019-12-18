@@ -10,7 +10,7 @@ import UIKit
 
 class DateCollectionView: UICollectionViewCell {
     
-    @IBOutlet weak var DateLabel: UILabel!
+//    @IBOutlet weak var DateLabel: UILabel!
     
     
     
